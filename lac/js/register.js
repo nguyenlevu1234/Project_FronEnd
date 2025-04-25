@@ -28,10 +28,11 @@ document.getElementById('transmit_register').addEventListener('click', function 
     if (!password) {
         document.getElementById('error_password').textContent = "Mật khẩu không được để trống";
         isValid = false;
-    } else if (password.length < 6) {
-        document.getElementById('error_password').textContent = "Mật khẩu tối thiểu 6 ký tự trở lên";
-        isValid = false;
-    }
+    } 
+    // else if (password.length < 6) {
+    //     document.getElementById('error_password').textContent = "Mật khẩu tối thiểu 6 ký tự trở lên";
+    //     isValid = false;
+    // }
 
     // Repassword
     if (!repassword) {
@@ -43,14 +44,13 @@ document.getElementById('transmit_register').addEventListener('click', function 
     }
 
     if (isValid) {
-        // ✅ Lưu vào localStorage
+        // Lưu vào localStorage
         const user = {
             email: email,
             password: password
         };
         localStorage.setItem("user", JSON.stringify(user));
-
-        alert("Đăng ký thành công!");
-        window.location.href = "./login.html";
+        
+      location.href = "./login.html";
     }
 });

@@ -18,7 +18,6 @@ document.getElementById('transmit_login').addEventListener('click', function (e)
     }
 
     // Đăng nhập thành công => chuyển sang trang chủ
-    alert('Đăng nhập thành công!');
-    window.location.href = './interface.html'; // bạn đổi sang trang chủ thật của bạn
+    location.href = './interface.html'; // bạn đổi sang trang chủ thật của bạn
 });
 

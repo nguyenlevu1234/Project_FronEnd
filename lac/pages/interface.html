@@ -11,13 +11,41 @@
 <link rel="stylesheet" href="../css/responsive.css">
 </head>
 <body>
-    <header>
+    <!-- <header>
        <div class="heads">
 <p class="left"> Tài Chính Cá Nhân K24_Rikkei</p>
 
 <p class="right">Tài khoản  <i class="fa-solid fa-angle-down"></i></p>
+
+
+    </div>
 </div>
+    </header> -->
+
+    <header>
+      <div class="heads">
+        <p class="left">Tài Chính Cá Nhân K24_Rikkei</p>
+    
+
+        <!-- Hộp xác nhận -->
+<div id="logout-confirm" class="confirm-box hidden">
+  <p>Bạn có chắc chắn muốn đăng xuất không?</p>
+  <button id="confirm-yes">Có</button>
+  <button id="confirm-no">Không</button>
+</div>
+
+        <div class="right">
+          <select id="embed_logout">
+            <option selected hidden>Tài khoản</option>
+            <option value="account">Tài khoản</option>
+            <option value="logout">Đăng xuất</option>
+          </select>
+        </div>
+      </div>
     </header>
+    
+  
+
 <div class="main">
     <div class="form_1">
         <h1> Kiểm soát chi tiêu thông minh</h1>
@@ -160,5 +188,7 @@
 <footer>
     <p>© 2025 Quản Lý Tài Chính Cá Nhân. by Quốc Hai!</p>
 </footer>
+
+<script src="../js/interface.js"></script>
 </body>
 </html>
