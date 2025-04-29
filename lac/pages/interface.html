@@ -1,194 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/interface.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../css/responsive.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quản lý tài chính cá nhân</title>
+
+  <link rel="stylesheet" href="../css/interface.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <!-- <header>
-       <div class="heads">
-<p class="left"> Tài Chính Cá Nhân K24_Rikkei</p>
-
-<p class="right">Tài khoản  <i class="fa-solid fa-angle-down"></i></p>
-
-
+<header>
+  <div class="heads">
+    <p class="left">Tài Chính Cá Nhân K24_Rikkei</p>
+    <div class="right">
+      <select id="embed_logout">
+        <option selected hidden>Tài khoản</option>
+        <option value="account">Tài khoản</option>
+        <option value="logout">Đăng xuất</option>
+      </select>
     </div>
-</div>
-    </header> -->
+  </div>
 
-    <header>
-      <div class="heads">
-        <p class="left">Tài Chính Cá Nhân K24_Rikkei</p>
-    
+  <div id="logout-confirm" class="confirm-box hidden">
+    <p>Bạn có chắc chắn muốn đăng xuất không?</p>
+    <button id="confirm-yes" type="button">Có</button>
+    <button id="confirm-no" type="button">Không</button>
+  </div>
+</header>
 
-        <!-- Hộp xác nhận -->
-<div id="logout-confirm" class="confirm-box hidden">
-  <p>Bạn có chắc chắn muốn đăng xuất không?</p>
-  <button id="confirm-yes">Có</button>
-  <button id="confirm-no">Không</button>
-</div>
+<main class="main">
+  <section class="form_1">
+    <h1>Kiểm soát chi tiêu thông minh</h1>
+    <p>Theo dõi ngân sách và thu chi hàng tháng dễ dàng</p>
+  </section>
 
-        <div class="right">
-          <select id="embed_logout">
-            <option selected hidden>Tài khoản</option>
-            <option value="account">Tài khoản</option>
-            <option value="logout">Đăng xuất</option>
-          </select>
-        </div>
+  <section class="form_2">
+    <h1><img src="../assets/icon/bar-chart.webp" alt="Chart Icon">Quản lý tài chính cá nhân</h1>
+
+    <div class="box_1">
+      <label for="month_time">Chọn tháng:</label>
+      <input type="month" id="month_time">
+    </div>
+
+    <div class="box_2">
+      <label for="Budget_month">Ngân sách tháng:</label>
+      <input type="number" id="Budget_month" placeholder="VD: 50000000">
+      <button id="save-budget" type="button">Lưu</button>
+    </div>
+
+    <div class="box_3">
+      <p>Số tiền còn lại</p>
+      <p class="p1">0 VND</p>
+    </div>
+
+    <div class="box_4">
+      <p>Quản lý danh mục (theo tháng)</p>
+      <input type="text" id="Category_name" placeholder="Tên danh mục">
+      <input type="number" id="limit" placeholder="Giới hạn (VND)">
+      <button id="add-category" type="button">Thêm danh mục</button>
+
+      <table class="table">
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="box_5">
+      <input type="number" id="expense-amount" placeholder="Số tiền chi tiêu">
+      <input type="text" id="expense-note" placeholder="Ghi chú">
+      <button id="add-expense" type="button">Thêm giao dịch</button>
+    </div>
+
+    <div class="box_6">
+      <p><i class="fa-solid fa-receipt"></i> <span class="title">Lịch sử giao dịch</span></p>
+
+      <div class="controls">
+        <input type="text" id="search-text" placeholder="Tìm nội dung">
+        <button class="search-btn" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="sort-btn" type="button">Sắp xếp theo giá</button>
       </div>
-    </header>
-    
-  
 
-<div class="main">
-    <div class="form_1">
-        <h1> Kiểm soát chi tiêu thông minh</h1>
-        <p>theo giỏi ngân sách và thu chi hàng tháng dễ dàng</p>
+      <ul class="transaction-list"></ul>
+
+      <div class="pagination">
+        <button class="prev" type="button">Previous</button>
+        <button class="page active" type="button">1</button>
+        <button class="next" type="button">Next</button>
+      </div>
     </div>
 
-    <div class="form_2">
-<h1><img src="../assets/icon/bar-chart.webp">Quản lý tài chính cá nhân</h1>
-
-<div class="box_1">
-    <label > Chọn tháng:</label>
-<input type="month" id="month_time">
-</div>
-
-<div class="box_2">
-    <label >Ngân sách tháng:</label>
-<input type="number" id="Budget_month" placeholder="VD: 50000000">
-<button>Lưu</button>
-</div>
-
-<div class="box_3">
-<p>Số tiền còn lại</p>
-<p class="p1">O VND</p>
-</div>
-
-<div class="box_4">
-<p>Quản lý danh mục (theo tháng) </p>
-<input type="text" id="Category_name" placeholder="Tên danh mục">
-<input type="number" id="limit" placeholder="Giới hạn(VND)">
-<button>Thêm danh mục</button>
-<table class="table">
-    <tbody>
-        <tr>
-            <td>Tiền phòng</td>
-            <td>2,000,000 VND</td>
-            <td>
-                <a href="#">Sửa</a> |
-                <a href="#">Xóa</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Tiền ăn</td>
-            <td>1,000,000 VND</td>
-            <td>
-                <a href="#">Sửa</a> |
-                <a href="#">Xóa</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Tiền xăng xe</td>
-            <td>500,000 VND</td>
-            <td>
-                <a href="#">Sửa</a> |
-                <a href="#">Xóa</a>
-            </td>
-        </tr>
-        <tr>
-            <td>Tiền mua sắm</td>
-            <td>1,000,000 VND</td>
-            <td>
-                <a href="#">Sửa</a> |
-                <a href="#">Xóa</a>
-            </td>
-        </tr>
-    </tbody>
-    </table>
-</div>
-
-<div class="box_5">
-    <input type="number" placeholder="ghi chu">
-    <button>Tieenf chi tiu</button>
-    <input type="text" placeholder="ghi chu">
-    <button>Them</button>
-</div>
-
-<div class="box_6">
-    <p><i class="fa-solid fa-receipt"></i> <span class="title">Lịch sử giao dịch</span></p>
-    
-    <div class="controls">
-      <input type="text" placeholder="tìm nội dung">
-      <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-      <button class="sort-btn">Sắp xếp theo giá</button>
+    <div class="box_7 hidden">
+      <!-- Cảnh báo vượt ngân sách -->
     </div>
-  
-    <ul class="transaction-list">
-      <li>tiền phòng - đóng tiền phòng tháng 3: 2,000,000 VND <span class="delete">Xoá</span></li>
-      <li>tiền xăng xe - đổ xăng 21/3: 100,000 VND <span class="delete">Xoá</span></li>
-      <li>tiền ăn - trà sữa: 30,000 VND <span class="delete">Xoá</span></li>
-      <li>tiền ăn - bánh mì: 30,000 VND <span class="delete">Xoá</span></li>
-      <li>tiền ăn - tiền nhậu: 1,000,000 VND <span class="delete">Xoá</span></li>
-    </ul>
-  
-    <div class="pagination">
-      <button class="prev">Previous</button>
-      <button class="page">1</button>
-      <button class="page active">2</button>
-      <button class="page">3</button>
-      <button class="next">Next</button>
+
+    <div class="box_8">
+      <h3>📅 Thống kê chi tiêu các tháng</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Tháng</th>
+            <th>Chi tiêu</th>
+            <th>Ngân sách</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody id="summary-body"></tbody>
+      </table>
     </div>
-  </div>
-  
-
-<div class="box_7">
-    Danh mục "<strong>tiền ăn</strong>" đã vượt giới hạn: <strong>1,060,000 / 1,000,000 VND</strong>
-</div>
-
-<div class="box_8">
-    <h3>📅 Thống kê chi tiêu các tháng</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Tháng</th>
-          <th>Chi tiêu</th>
-          <th>Ngân sách</th>
-          <th>Trạng thái</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2025-03</td>
-          <td>2,150,000 VND</td>
-          <td>5,000,000</td>
-          <td class="status-ok">✔️ Đạt</td>
-        </tr>
-        <tr>
-          <td>2025-04</td>
-          <td>3,100,000 VND</td>
-          <td>3,000,000</td>
-          <td class="status-over">Vượt</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
-
-</div>
-</div>
-
+  </section>
+</main>
 
 <footer>
-    <p>© 2025 Quản Lý Tài Chính Cá Nhân. by Quốc Hai!</p>
+  <p>© 2025 Quản Lý Tài Chính Cá Nhân. by Quốc Hai!</p>
 </footer>
+<!-- Thêm đoạn này vào cuối body -->
+<div id="delete-confirm" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded shadow-md text-center">
+    <p class="mb-4">Bạn có chắc chắn muốn xóa danh mục này?</p>
+    <button id="delete-yes" class="bg-red-500 text-white px-4 py-2 rounded mr-2">Đồng ý</button>
+    <button id="delete-no" class="bg-gray-300 px-4 py-2 rounded">Hủy</button>
+  </div>
+</div>
 
+<!-- Form chỉnh sửa danh mục -->
+<div id="edit-category-form" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded shadow-md text-center w-80">
+    <h3 class="mb-4 text-xl font-bold">Chỉnh sửa danh mục</h3>
+    <input type="text" id="edit-category-name" placeholder="Tên danh mục" class="mb-3 w-full p-2 border rounded">
+    <input type="number" id="edit-category-limit" placeholder="Giới hạn (VND)" class="mb-3 w-full p-2 border rounded">
+    <div class="flex justify-between">
+      <button id="save-edit" class="bg-green-500 text-white px-4 py-2 rounded">Lưu</button>
+      <button id="cancel-edit" class="bg-gray-300 px-4 py-2 rounded">Hủy</button>
+    </div>
+  </div>
+</div>
 <script src="../js/interface.js"></script>
+
+<script src="../js/new.js"></script>
+
 </body>
 </html>

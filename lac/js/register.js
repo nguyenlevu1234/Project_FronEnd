@@ -1,3 +1,4 @@
+
 document.getElementById('transmit_register').addEventListener('click', function (e) {
     e.preventDefault();
 
@@ -29,10 +30,10 @@ document.getElementById('transmit_register').addEventListener('click', function 
         document.getElementById('error_password').textContent = "Mật khẩu không được để trống";
         isValid = false;
     } 
-    // else if (password.length < 6) {
-    //     document.getElementById('error_password').textContent = "Mật khẩu tối thiểu 6 ký tự trở lên";
-    //     isValid = false;
-    // }
+    else if (password.length < 6) {
+        document.getElementById('error_password').textContent = "Mật khẩu tối thiểu 6 ký tự trở lên";
+        isValid = false;
+    }
 
     // Repassword
     if (!repassword) {

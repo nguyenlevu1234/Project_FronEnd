@@ -270,9 +270,29 @@ letter-spacing: 0%;
 vertical-align: middle;
 
 }
-.box_4 table{
-    background-color: #ffffff;
+
+/* Form chỉnh sửa ẩn khi không cần thiết */
+#edit-category-form.hidden {
+  display: none;
 }
+
+/* Form chỉnh sửa hiển thị */
+#edit-category-form {
+  display: block;
+  background-color: #003e74; 
+  border-radius: 12px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 90%;
+  max-width: 400px;
+
+}
+
+
+
 
 .box_5{
   
@@ -484,3 +504,4 @@ footer{
     height: 50px;
     margin: 0px;
 }
+

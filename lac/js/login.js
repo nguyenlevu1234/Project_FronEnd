@@ -15,9 +15,14 @@ document.getElementById('transmit_login').addEventListener('click', function (e)
     if (!storedUser || email !== storedUser.email || password !== storedUser.password) {
         errorDiv.textContent = 'Email hoặc mật khẩu không đúng!';
         return;
+    } else{
+        location.href = './interface.html'; // bạn đổi sang trang chủ thật của bạn
+        // Nếu đăng nhập thành công
+        localStorage.setItem("isLoggedIn", "true").removeItem("isLoggedIn");
+        sessionStorage.setItem("isLoggedIn", "true").removeItem("isLoggedIn");
     }
 
     // Đăng nhập thành công => chuyển sang trang chủ
-    location.href = './interface.html'; // bạn đổi sang trang chủ thật của bạn
+    
 });
 
