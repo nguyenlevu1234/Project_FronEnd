@@ -1,4 +1,7 @@
-* {
+body {
+  background: linear-gradient(to bottom, #2193b0, #6dd5ed);
+}
+*{
     box-sizing: border-box;
     font-family: Arial, sans-serif;
   }

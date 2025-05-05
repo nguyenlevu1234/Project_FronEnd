@@ -4,26 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Quản lý tài chính cá nhân</title>
-
   <link rel="stylesheet" href="../css/interface.css">
   <link rel="stylesheet" href="../css/responsive.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
+
 <header>
   <div class="heads">
     <p class="left">Tài Chính Cá Nhân K24_Rikkei</p>
     <div class="right">
-      <select id="embed_logout">
-        <option selected hidden>Tài khoản</option>
-        <option value="account">Tài khoản</option>
+      <select id="embed_logout" aria-label="Tùy chọn tài khoản">
+        <option value="account" selected>Tài khoản</option>
         <option value="logout">Đăng xuất</option>
       </select>
     </div>
-  </div>
-
+  </div> 
   <div id="logout-confirm" class="confirm-box hidden">
     <p>Bạn có chắc chắn muốn đăng xuất không?</p>
     <button id="confirm-yes" type="button">Có</button>
@@ -31,73 +28,86 @@
   </div>
 </header>
 
-<main class="main">
+<main class="main">  
   <section class="form_1">
     <h1>Kiểm soát chi tiêu thông minh</h1>
     <p>Theo dõi ngân sách và thu chi hàng tháng dễ dàng</p>
   </section>
-
   <section class="form_2">
-    <h1><img src="../assets/icon/bar-chart.webp" alt="Chart Icon">Quản lý tài chính cá nhân</h1>
-
+    <h1><img src="../assets/icon/bar-chart.webp" class="caption"alt="Chart Icon">Quản lý tài chính cá nhân</h1>
     <div class="box_1">
       <label for="month_time">Chọn tháng:</label>
       <input type="month" id="month_time">
+      <span class="remaining">Còn lại: 0 VND</span>
     </div>
-
     <div class="box_2">
       <label for="Budget_month">Ngân sách tháng:</label>
       <input type="number" id="Budget_month" placeholder="VD: 50000000">
       <button id="save-budget" type="button">Lưu</button>
     </div>
-
     <div class="box_3">
       <p>Số tiền còn lại</p>
       <p class="p1">0 VND</p>
     </div>
-
     <div class="box_4">
       <p>Quản lý danh mục (theo tháng)</p>
       <input type="text" id="Category_name" placeholder="Tên danh mục">
       <input type="number" id="limit" placeholder="Giới hạn (VND)">
       <button id="add-category" type="button">Thêm danh mục</button>
-
       <table class="table">
+        <thead>
+          <tr>
+            <th>Tên danh mục</th>
+            <th>Giới hạn</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
         <tbody></tbody>
       </table>
     </div>
-
     <div class="box_5">
+      <select id="expense-category" placeholder="Chọn danh mục">
+        <option value="" disabled selected>Chọn danh mục</option>
+      </select>
       <input type="number" id="expense-amount" placeholder="Số tiền chi tiêu">
       <input type="text" id="expense-note" placeholder="Ghi chú">
       <button id="add-expense" type="button">Thêm giao dịch</button>
     </div>
-
     <div class="box_6">
       <p><i class="fa-solid fa-receipt"></i> <span class="title">Lịch sử giao dịch</span></p>
-
       <div class="controls">
         <input type="text" id="search-text" placeholder="Tìm nội dung">
-        <button class="search-btn" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-        <button class="sort-btn" type="button">Sắp xếp theo giá</button>
+        <button class="search-btn" type="button" aria-label="Tìm kiếm giao dịch"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="sort-btn" type="button">Sắp xếp theo giá (giảm dần)</button>
       </div>
-
-      <ul class="transaction-list"></ul>
-
+      <ul class="transaction-list">
+        <li class="transaction-header">
+          <span>Danh mục</span>
+          <span>Ghi chú</span>
+          <span>Số tiền</span>
+          <span>Hành động</span>
+        </li>
+      </ul>
       <div class="pagination">
         <button class="prev" type="button">Previous</button>
         <button class="page active" type="button">1</button>
         <button class="next" type="button">Next</button>
       </div>
     </div>
-
     <div class="box_7 hidden">
-      <!-- Cảnh báo vượt ngân sách -->
+      <p id="warning-message"></p>
     </div>
-
     <div class="box_8">
       <h3>📅 Thống kê chi tiêu các tháng</h3>
-      <table>
+      <div class="filter">
+        <label for="status-filter">Lọc theo trạng thái:</label>
+        <select id="status-filter" aria-label="Lọc trạng thái ngân sách">
+          <option value="all">Tất cả</option>
+          <option value="within">Đạt</option>
+          <option value="over">Không đạt</option>
+        </select>
+      </div>
+      <table class="table">
         <thead>
           <tr>
             <th>Tháng</th>
@@ -111,34 +121,33 @@
     </div>
   </section>
 </main>
-
 <footer>
-  <p>© 2025 Quản Lý Tài Chính Cá Nhân. by Quốc Hai!</p>
+  <p>© <script>document.write(new Date().getFullYear())</script> Quản Lý Tài Chính Cá Nhân. by Quốc Hai!</p>
 </footer>
-<!-- Thêm đoạn này vào cuối body -->
-<div id="delete-confirm" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-  <div class="bg-white p-6 rounded shadow-md text-center">
-    <p class="mb-4">Bạn có chắc chắn muốn xóa danh mục này?</p>
-    <button id="delete-yes" class="bg-red-500 text-white px-4 py-2 rounded mr-2">Đồng ý</button>
-    <button id="delete-no" class="bg-gray-300 px-4 py-2 rounded">Hủy</button>
+<!-- Modal Xác Nhận -->
+<div id="confirmModal" class="modal">
+  <div class="modal-content">
+    <p>Bạn có chắc chắn muốn xóa danh mục này không?</p>
+    <button id="confirm-delete-btn">Xác nhận</button>
+    <button id="cancel-delete-btn">Hủy</button>
   </div>
 </div>
-
-<!-- Form chỉnh sửa danh mục -->
-<div id="edit-category-form" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-  <div class="bg-white p-6 rounded shadow-md text-center w-80">
-    <h3 class="mb-4 text-xl font-bold">Chỉnh sửa danh mục</h3>
-    <input type="text" id="edit-category-name" placeholder="Tên danh mục" class="mb-3 w-full p-2 border rounded">
-    <input type="number" id="edit-category-limit" placeholder="Giới hạn (VND)" class="mb-3 w-full p-2 border rounded">
-    <div class="flex justify-between">
-      <button id="save-edit" class="bg-green-500 text-white px-4 py-2 rounded">Lưu</button>
-      <button id="cancel-edit" class="bg-gray-300 px-4 py-2 rounded">Hủy</button>
+<!-- Modal Chỉnh Sửa -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <h4>Chỉnh sửa danh mục</h4>
+    <input type="text" id="edit-category-name" placeholder="Tên danh mục mới">
+    <input type="number" id="edit-category-limit" placeholder="Giới hạn mới (VND)">
+    <div>
+      <button id="save-edit-btn">Lưu</button>
+      <button id="cancel-edit-btn">Hủy</button>
     </div>
   </div>
 </div>
+
+
+
 <script src="../js/interface.js"></script>
-
-<script src="../js/new.js"></script>
-
+<!-- <script src="../js/new.js"></script> -->
 </body>
 </html>
