@@ -1,4 +1,4 @@
-/* Responsive Design */
+/* Responsive Design
 @media (max-width: 768px) {
   .heads {
     flex-direction: column;
@@ -29,8 +29,8 @@
     max-width: 100%;
   }
 
-  .box_2 button,
-  .box_4 button,
+  /* .box_2 button, */
+  /* .box_4 button,
   .box_5 button {
     width: 100%;
     max-width: 150px;
@@ -46,5 +46,4 @@
   .box_6 .controls input,
   .box_6 .sort-btn {
     width: 100%;
-  }
-}
+  } */
