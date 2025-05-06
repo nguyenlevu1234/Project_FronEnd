@@ -486,7 +486,7 @@ document.querySelector(".search-btn").addEventListener("click", function() {
   const searchText = document.getElementById("search-text").value.toLowerCase(); // Lấy từ khóa tìm kiếm
 
   const filteredTransactions = monthData[currentMonth].transactions.filter(trans =>
-    trans.note.toLowerCase().includes(searchText) |
+    trans.note.toLowerCase().includes(searchText) ||
 monthData[currentMonth].categories[trans.categoryIndex]?.name.toLowerCase().includes(searchText) // // Lọc theo ghi chúLọc theo tên danh mục
   );
   currentPage = 1; // Đặt lại trang về 1 khi tìm kiếm
