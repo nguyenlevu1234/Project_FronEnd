@@ -13,9 +13,9 @@
 
 <header>
   <div class="heads">
-    <p class="left">Tài Chính Cá Nhân K24_Rikkei</p>
+    <p class="left">📒 Tài Chính Cá Nhân K24_Rikkei</p>
     <div class="right">
-      <select id="embed_logout" aria-label="Tùy chọn tài khoản">
+      <select id="embed_logout">
         <option value="account" selected>Tài khoản</option>
         <option value="logout">Đăng xuất</option>
       </select>
@@ -30,18 +30,18 @@
 
 <main class="main">  
   <section class="form_1">
-    <h1>Kiểm soát chi tiêu thông minh</h1>
+    <h1>🎯 Kiểm soát chi tiêu thông minh</h1>
     <p>Theo dõi ngân sách và thu chi hàng tháng dễ dàng</p>
   </section>
   <section class="form_2">
-    <h1><img src="../assets/icon/bar-chart.webp" class="caption"alt="Chart Icon">Quản lý tài chính cá nhân</h1>
+    <h1>📊 Quản Lý Tài Chính Cá Nhân</h1>
     <div class="box_1">
-      <label for="month_time">Chọn tháng:</label>
+      <label for="month_time">📅 Chọn tháng:</label>
       <input type="month" id="month_time">
       <span class="remaining">Còn lại: 0 VND</span>
     </div>
     <div class="box_2">
-      <label for="Budget_month">Ngân sách tháng:</label>
+      <label for="Budget_month">💰 Ngân sách tháng:</label>
       <input type="number" id="Budget_month" placeholder="VD: 50000000">
       <button id="save-budget" type="button">Lưu</button>
     </div>
@@ -50,7 +50,7 @@
       <p class="p1">0 VND</p>
     </div>
     <div class="box_4">
-      <p>Quản lý danh mục (theo tháng)</p>
+      <p>💼 Quản lý danh mục (theo tháng)</p>
       <input type="text" id="Category_name" placeholder="Tên danh mục">
       <input type="number" id="limit" placeholder="Giới hạn (VND)">
       <button id="add-category" type="button">Thêm danh mục</button>
@@ -74,10 +74,10 @@
       <button id="add-expense" type="button">Thêm giao dịch</button>
     </div>
     <div class="box_6">
-      <p><i class="fa-solid fa-receipt"></i> <span class="title">Lịch sử giao dịch</span></p>
+      <p><span class="title">🧾 Lịch sử giao dịch</span></p>
       <div class="controls">
         <input type="text" id="search-text" placeholder="Tìm nội dung">
-        <button class="search-btn" type="button" aria-label="Tìm kiếm giao dịch"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="search-btn" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
         <button class="sort-btn" type="button">Sắp xếp theo giá (giảm dần)</button>
       </div>
       <ul class="transaction-list">
@@ -99,15 +99,7 @@
     </div>
     <div class="box_8">
       <h3>📅 Thống kê chi tiêu các tháng</h3>
-      <div class="filter">
-        <label for="status-filter">Lọc theo trạng thái:</label>
-        <select id="status-filter" aria-label="Lọc trạng thái ngân sách">
-          <option value="all">Tất cả</option>
-          <option value="within">Đạt</option>
-          <option value="over">Không đạt</option>
-        </select>
-      </div>
-      <table class="table">
+      <table>
         <thead>
           <tr>
             <th>Tháng</th>
@@ -116,7 +108,14 @@
             <th>Trạng thái</th>
           </tr>
         </thead>
-        <tbody id="summary-body"></tbody>
+        <tbody>
+          <tr>
+            <td>2025-03</td>
+            <td>1000</td>
+            <td>2000</td>
+            <td class="status-dat">đạt</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </section>
@@ -124,14 +123,6 @@
 <footer>
   <p>© <script>document.write(new Date().getFullYear())</script> Quản Lý Tài Chính Cá Nhân. by Quốc Hai!</p>
 </footer>
-<!-- Modal Xác Nhận -->
-<div id="confirmModal" class="modal">
-  <div class="modal-content">
-    <p>Bạn có chắc chắn muốn xóa danh mục này không?</p>
-    <button id="confirm-delete-btn">Xác nhận</button>
-    <button id="cancel-delete-btn">Hủy</button>
-  </div>
-</div>
 <!-- Modal Chỉnh Sửa -->
 <div id="editModal" class="modal">
   <div class="modal-content">
@@ -144,10 +135,14 @@
     </div>
   </div>
 </div>
-
-
-
+<!-- Modal Xác Nhận (Dùng chung cho cả xóa danh mục và giao dịch) -->
+<div id="confirmModal" class="modal">
+  <div class="modal-content">
+    <p id="confirmMessage">Bạn có chắc chắn muốn xóa không?</p>
+    <button id="confirm-delete-btn">Xác nhận</button>
+    <button id="cancel-delete-btn">Hủy</button>
+  </div>
+</div>
 <script src="../js/interface.js"></script>
-<!-- <script src="../js/new.js"></script> -->
 </body>
 </html>
